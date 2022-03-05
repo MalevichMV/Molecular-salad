@@ -1,0 +1,12 @@
+.info {
+    color: rgb(104, 84, 84);
+    &__title{
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 47px;
+    }
+    &__description{
+        text-align: center;
+        font-size: 27px;
+    }
+}
