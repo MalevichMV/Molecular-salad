@@ -1,21 +1,22 @@
 .info {
+    
     display: flex;
     color: #24536e;
     &__wrapper {
-        width: 900px;
+        width: 675px;
     }
     &__title{
         margin-bottom: 25px;
-        font-size: 47px;
+        font-size: 35px;
     }
     &__description{
         margin-right: 165px;
-        font-size: 27px;
+        font-size: 20px;
     }
     
     &__slide{
         box-shadow: 0px 0px 34px 7px rgba(34, 60, 80, 0.36);
-        width: 800px;
+        width: 600px;
     }
     &__slide img {
         width: 100%;

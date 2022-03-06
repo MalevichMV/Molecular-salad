@@ -1,10 +1,42 @@
 .app{
-    &__title{
+    &__header{
+        display: flex;
+        justify-content: space-around;
         text-align: center;
         color: #8dd47c;
     }
     &__logo {
-        width: 500px;
+        width: 375px;
         height: auto;
+    }
+    &__button {
+        box-shadow: 0 0 40px 40px #2a9aad inset;
+        transition: all 0.5s;
+        color: #fff;
+        box-sizing: border-box;
+        appearance: none;
+        background-color: transparent;
+        border: 2px solid #2a9aad;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;   
+        align-self: center;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        margin: 20px;
+        padding: 14px 35px;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+
+        &:hover {
+            box-shadow: 0 0 40px 40px #387b86 inset;
+            border: 2px solid #387b86;
+            color: rgb(240, 240, 240);
+            outline: 0;
+        }
     }
 }
