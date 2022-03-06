@@ -1,0 +1,1 @@
+export const nextSlide = () => ({type: 'NEXT_SLIDE'});

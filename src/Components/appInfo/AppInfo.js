@@ -1,3 +1,7 @@
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { nextSlide } from '../../actions'
+
 import './AppInfo.scss'
 import slide1 from '../../resources/slide1.jpg'
 import slide2 from '../../resources/slide2.jpg'
@@ -5,7 +9,31 @@ import slide3 from '../../resources/slide3.jpg'
 import slide4 from '../../resources/slide4.jpg'
 import slide5 from '../../resources/slide5.jpg'
 
+
 const AppInfo = () => {
+    const slides = [
+        <img key={slide1} src={slide1} />,
+        <img key={slide2} src={slide2} />,
+        <img key={slide3} src={slide3} />,
+        <img key={slide4} src={slide4} />,
+        <img key={slide5} src={slide5} />,
+    ]
+
+    const currentSlide = useSelector(state => state.currentSlide)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            dispatch(nextSlide())
+            
+        }, 4000)
+
+        return () => clearInterval(interval)
+    }, [])
+
+    const prevImgIndex = currentSlide ? currentSlide - 1 : slides.length - 1
+    const nextImgIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1
+    
     return (
         <>
             <div className='info'>
@@ -16,22 +44,19 @@ const AppInfo = () => {
                 </div>
 
                 <div className="info__slider">
-                    <div className="info__slide show">
-                        <img src={slide1} alt="pepper" />
-                    </div>  
-                    <div className="info__slide hide">
-                        <img src={slide2} alt="food" />
+                    <div className="info__slide hide"
+                            key={prevImgIndex}>
+                        {slides[prevImgIndex]}
                     </div>
-                    <div className="info__slide hide">
-                        <img src={slide3} alt="oil" />
+                    <div className="info__slide show"
+                            key={currentSlide}>
+                        {slides[currentSlide]}
                     </div>
-                    <div className="info__slide hide">
-                        <img src={slide4} alt="paprika" />
+                    <div className="info__slide hide"
+                            key={nextImgIndex}>
+                        {slides[nextImgIndex]}
                     </div>
-                    <div className="info__slide hide">
-                        <img src={slide5} alt="pp" />
-                    </div>
-                </div>                
+                </div>
             </div>   
         </>   
     )
