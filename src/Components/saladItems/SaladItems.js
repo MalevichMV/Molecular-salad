@@ -1,85 +1,62 @@
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { processLoading, proccesError, proccesSuccess, newSalads } from '../../actions'
+
 import './SaladItems.scss'
-import imgTest from '../../resources/info.png'
-import slide1 from '../../resources/slide1.jpg'
-import slide2 from '../../resources/slide2.jpg'
-import slide3 from '../../resources/slide3.jpg'
-import slide4 from '../../resources/slide4.jpg'
-import slide5 from '../../resources/slide5.jpg'
 import minus from '../../resources/minus.png'
 import plus from '../../resources/plus.png'
 
+import useServices from '../../services/Services'
+
 
 const SaladItems = () => {
+    const process  = useSelector(state => state.process)
+    const salad__list  = useSelector(state => state.salad__list)
+    const dispatch = useDispatch();
+
+    const {getAllSalads} = useServices();
+    
+    useEffect(() => {
+        getAllSalads()
+        .then(value => {
+            dispatch(newSalads(value))
+            dispatch(proccesSuccess()) 
+        })
+        .catch(dispatch(proccesError()))
+    }, [])
+    
+    function renderItem() {
+        const salads = salad__list;
+        const items = salads.map((item) => {
+            
+            return(
+                <li className="salad__item"
+                    key={item.id}>
+                    <img className="salad__img" src={item.img} alt="image not found"/>
+                    <h3 className="salad__name">{item.title}</h3>
+                    <div className="salad__description">{item.descr}</div>
+                    <div className="salad__price">Цена: {item.price} руб.</div>
+                    <div className="salad__counter">
+                        <img src={minus} alt="minus" />
+                        <span className="salad__value">0</span>
+                        <img src={plus} alt="plus" />
+                    </div>
+                </li>
+            )
+        });
+
+        return(
+            <ul className='salad__grid'>
+                {items}
+            </ul>
+        )
+    }
+
+    const elements = renderItem();
+
     return(
         <div className="salad__list">
-            <ul className='salad__grid'>
-                <li className="salad__item">
-                    <img className="salad__img" src={imgTest} alt="test" />
-                    <h3 className="salad__name">Яйцо-помадка</h3>
-                    <div className="salad__description">Это самый простой рецепт молекулярной кухни. Для приготовления блюда ставим кастрюлю с водой и яйцом в духовку, разогретую ровно до 64 градусов.</div>
-                    <div className="salad__price">Цена: 1000 руб.</div>
-                    <div className="salad__counter">
-                        <img src={minus} alt="minus" />
-                        <span className="salad__value">0</span>
-                        <img src={plus} alt="plus" />
-                    </div>
-                </li>
-                <li className="salad__item">
-                    <img className="salad__img" src={slide1} alt="test" />
-                    <h3 className="salad__name">Яйцо-помадка</h3>
-                    <div className="salad__description">Это самый простой рецепт молекулярной кухни. Для приготовления блюда ставим кастрюлю с водой и яйцом в духовку, разогретую ровно до 64 градусов.</div>
-                    <div className="salad__price">Цена: 1000 руб.</div>
-                    <div className="salad__counter">
-                        <img src={minus} alt="minus" />
-                        <span className="salad__value">0</span>
-                        <img src={plus} alt="plus" />
-                    </div>
-                </li>
-                <li className="salad__item">
-                    <img className="salad__img" src={slide2} alt="test" />
-                    <h3 className="salad__name">Яйцо-помадка</h3>
-                    <div className="salad__description">Это самый простой рецепт молекулярной кухни. Для приготовления блюда ставим кастрюлю с водой и яйцом в духовку, разогретую ровно до 64 градусов.</div>
-                    <div className="salad__price">Цена: 1000 руб.</div>
-                    <div className="salad__counter">
-                        <img src={minus} alt="minus" />
-                        <span className="salad__value">0</span>
-                        <img src={plus} alt="plus" />
-                    </div>
-                </li>
-                <li className="salad__item">
-                    <img className="salad__img" src={slide3} alt="test" />
-                    <h3 className="salad__name">Яйцо-помадка</h3>
-                    <div className="salad__description">Это самый простой рецепт молекулярной кухни. Для приготовления блюда ставим кастрюлю с водой и яйцом в духовку, разогретую ровно до 64 градусов.</div>
-                    <div className="salad__price">Цена: 1000 руб.</div>
-                    <div className="salad__counter">
-                        <img src={minus} alt="minus" />
-                        <span className="salad__value">0</span>
-                        <img src={plus} alt="plus" />
-                    </div>
-                </li>
-                <li className="salad__item">
-                    <img className="salad__img" src={slide4} alt="test" />
-                    <h3 className="salad__name">Яйцо-помадка</h3>
-                    <div className="salad__description">Это самый простой рецепт молекулярной кухни. Для приготовления блюда ставим кастрюлю с водой и яйцом в духовку, разогретую ровно до 64 градусов.</div>
-                    <div className="salad__price">Цена: 1000 руб.</div>
-                    <div className="salad__counter">
-                        <img src={minus} alt="minus" />
-                        <span className="salad__value">0</span>
-                        <img src={plus} alt="plus" />
-                    </div>
-                </li>
-                <li className="salad__item">
-                    <img className="salad__img" src={slide5} alt="test" />
-                    <h3 className="salad__name">Яйцо-помадка</h3>
-                    <div className="salad__description">Это самый простой рецепт молекулярной кухни. Для приготовления блюда ставим кастрюлю с водой и яйцом в духовку, разогретую ровно до 64 градусов.</div>
-                    <div className="salad__price">Цена: 1000 руб.</div>
-                    <div className="salad__counter">
-                        <img src={minus} alt="minus" />
-                        <span className="salad__value">0</span>
-                        <img src={plus} alt="plus" />
-                    </div>
-                </li>
-            </ul>
+            {elements}
         </div>
     )
 }

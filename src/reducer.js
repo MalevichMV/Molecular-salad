@@ -1,5 +1,7 @@
 const initialState = {
-    currentSlide: 0
+    currentSlide: 0,
+    process: 'loading',
+    salad__list: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,8 +11,28 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 currentSlide: state.currentSlide >= 4 ? 0 : state.currentSlide + 1
             };
-            default: 
-                return state;
+        case "PROCESS_LOADING":
+            return{
+                ...state,
+                process: 'loading'
+            };
+        case "PROCESS_ERROR":
+            return{
+                ...state,
+                process: 'error'
+            };
+        case "PROCESS_SUCCESS":
+            return{
+                ...state,
+                process: 'success'
+            };
+        case "NEW_SALADS":
+            return{
+                ...state,
+                salad__list: action.payload
+            };
+        default: 
+            return state;
     }
 }
 

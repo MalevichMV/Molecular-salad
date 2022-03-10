@@ -30,10 +30,7 @@ const AppInfo = () => {
 
         return () => clearInterval(interval)
     }, [])
-
-    const prevImgIndex = currentSlide ? currentSlide - 1 : slides.length - 1
-    const nextImgIndex = currentSlide === slides.length - 1 ? 0 : currentSlide + 1
-    
+ 
     return (
         <>
             <div className='info'>
@@ -44,17 +41,9 @@ const AppInfo = () => {
                 </div>
 
                 <div className="info__slider">
-                    <div className="info__slide hide"
-                            key={prevImgIndex}>
-                        {slides[prevImgIndex]}
-                    </div>
                     <div className="info__slide show"
                             key={currentSlide}>
                         {slides[currentSlide]}
-                    </div>
-                    <div className="info__slide hide"
-                            key={nextImgIndex}>
-                        {slides[nextImgIndex]}
                     </div>
                 </div>
             </div>   
