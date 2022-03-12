@@ -1,8 +1,12 @@
 const initialState = {
     currentSlide: 0,
-    process: 'loading',
+    saladsProcess: 'loading',
+    ingredientsProcess: 'loading',
     salad__list: [],
-    order: {}
+    ingredient__list: [],
+    order: {},
+    customSalad: [],
+    orderCustom: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,28 +17,52 @@ const reducer = (state = initialState, action) => {
                 currentSlide: state.currentSlide >= 4 ? 0 : state.currentSlide + 1
             };
 
-        case "PROCESS_LOADING":
+        case "SALADS_PROCESS_LOADING":
             return{
                 ...state,
-                process: 'loading'
+                saladsProcess: 'loading'
             };
 
-        case "PROCESS_ERROR":
+        case "SALADS_PROCESS_ERROR":
             return{
                 ...state,
-                process: 'error'
+                saladsProcess: 'error'
             };
 
-        case "PROCESS_SUCCESS":
+        case "SALADS_PROCESS_SUCCESS":
             return{
                 ...state,
-                process: 'success'
+                saladsProcess: 'success'
             };
 
         case "NEW_SALADS":
             return{
                 ...state,
                 salad__list: action.payload
+            };
+        
+        case "INGEDIENTS_PROCESS_LOADING":
+            return{
+                ...state,
+                ingredientsProcess: 'loading'
+            };
+
+        case "INGEDIENTS_PROCESS_ERROR":
+            return{
+                ...state,
+                ingredientsProcess: 'error'
+            };
+
+        case "INGEDIENTS_PROCESS_SUCCESS":
+            return{
+                ...state,
+                ingredientsProcess: 'success'
+            };
+
+        case "NEW_INGEDIENTS":
+            return{
+                ...state,
+                ingredient__list: action.payload
             };
 
         case "REMOVE_ORDER_ITEM":
@@ -86,6 +114,78 @@ const reducer = (state = initialState, action) => {
                         [action.payload.id]: state.order[action.payload.id] + 1
                     }
                 };
+            };
+        case "CREATE_CUSTOM_SALAD":
+            const index = state.customSalad.indexOf(action.payload)
+            if (index !== -1) {
+                let copy = Object.assign([], state.customSalad)
+                copy.splice(index, 1)
+                return{
+                    ...state,
+                    customSalad: copy
+                };
+            } else {
+                return{
+                    ...state,
+                    customSalad: [...state.customSalad, action.payload] 
+                };
+            };
+
+        case "ADD_ORDER_CUSTOM_SALAD":
+            if (state.customSalad.length > 1) {
+                return{
+                    ...state,
+                    orderCustom: [...state.orderCustom, state.customSalad]
+                }
+            } else return{...state};
+        case "REMOVE_INGEDIENTS":
+            if (state.customSalad.length < 2) return{...state};
+            let copyIngredient__list = [
+                ...state.ingredient__list
+            ]
+            let copyCustomSalad = Object.assign([], state.customSalad)
+            for (let i = 0; i < copyCustomSalad.length; i++)
+            {
+                for (let j = 0; j < copyIngredient__list.length; j++)
+                {
+                    if (copyCustomSalad[i] === copyIngredient__list[j].id)
+                    {
+                        copyIngredient__list[j].quantity--;
+                        if (copyIngredient__list[j].quantity === 0)
+                        {
+                            copyCustomSalad.splice(i, 1)
+                        }
+                    }
+                }
+            }
+            return {
+                ...state,
+                ingredient__list: copyIngredient__list,
+                customSalad: copyCustomSalad
+            };
+
+        case "ADD_INGEDIENTS":
+            let copyIngredients = [
+                ...state.ingredient__list
+            ]
+            let copyOrderCustom = [
+                ...state.orderCustom
+            ]
+            for (let i = 0; i < copyOrderCustom[action.payload].length; i++)
+            {
+                for (let j = 0; j < copyIngredients.length; j++)
+                {
+                    if (copyOrderCustom[action.payload][i] === copyIngredients[j].id)
+                    {
+                        copyIngredients[j].quantity++;
+                    }
+                }
+            }
+            copyOrderCustom.splice(action.payload, 1)
+            return {
+                ...state,
+                ingredient__list: copyIngredients,
+                orderCustom: copyOrderCustom
             };
         default: 
             return state;

@@ -1,7 +1,15 @@
 export const nextSlide = () => ({type: 'NEXT_SLIDE'});
-export const processLoading = () => ({type: 'PROCESS_LOADING'});
-export const proccesError = () => ({type: 'PROCESS_ERROR'});
-export const proccesSuccess = () => ({type: 'PROCESS_SUCCESS'});
+export const SaladProcessLoading = () => ({type: 'SALADS_PROCESS_LOADING'});
+export const SaladProcessError = () => ({type: 'SALADS_PROCESS_ERROR'});
+export const SaladProcessSuccess = () => ({type: 'SALADS_PROCESS_SUCCESS'});
 export const newSalads = (value) => ({type: 'NEW_SALADS', payload: value});
+export const ingredientsProcessLoading = () => ({type: 'INGEDIENTS_PROCESS_LOADING'});
+export const ingredientsProcessError = () => ({type: 'INGEDIENTS_PROCESS_ERROR'});
+export const ingredientsProcessSuccess = () => ({type: 'INGEDIENTS_PROCESS_SUCCESS'});
+export const newIngredients = (value) => ({type: 'NEW_INGEDIENTS', payload: value});
 export const addOrderItem = (parametrs) => ({type: 'ADD_ORDER_ITEM', payload: parametrs});
 export const removeOrderItem = (id) => ({type: 'REMOVE_ORDER_ITEM', payload: id});
+export const createCustomSalad = (id) => ({type: 'CREATE_CUSTOM_SALAD', payload: id});
+export const addOrderCustomSalad = () => ({type: 'ADD_ORDER_CUSTOM_SALAD'});
+export const removeIngredients = () => ({type: 'REMOVE_INGEDIENTS'});
+export const addIngredients = (index) => ({type: 'ADD_INGEDIENTS', payload: index});

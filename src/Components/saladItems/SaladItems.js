@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { proccesError, proccesSuccess, newSalads, addOrderItem, removeOrderItem } from '../../actions'
+import { SaladProcessError, SaladProcessSuccess, newSalads, addOrderItem, removeOrderItem } from '../../actions'
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
@@ -12,7 +12,7 @@ import useServices from '../../services/Services'
 
 
 const SaladItems = () => {
-    const process  = useSelector(state => state.process)
+    const saladsProcess  = useSelector(state => state.saladsProcess)
     const salad__list  = useSelector(state => state.salad__list)
     const order  = useSelector(state => state.order)
     const dispatch = useDispatch();
@@ -22,9 +22,9 @@ const SaladItems = () => {
         getAllSalads()
         .then(value => {
             dispatch(newSalads(value))
-            dispatch(proccesSuccess()) 
+            dispatch(SaladProcessSuccess()) 
         })
-        .catch(() => {dispatch(proccesError())})
+        .catch(() => {dispatch(SaladProcessError())})
     }, [])
 
     const plusOrder = (id) => {
@@ -59,6 +59,7 @@ const SaladItems = () => {
     function renderItem() {
         const salads = salad__list;
         const items = salads.map((item) => {
+            console.log(item.id)
             return(
                 <li className="salad__item"
                     key={item.id}>
@@ -70,7 +71,6 @@ const SaladItems = () => {
                 </li>
             )
         });
-
         return(
             <ul className='salad__grid'>
                 {items}
@@ -79,7 +79,7 @@ const SaladItems = () => {
     }
 
     
-    const setContent = () => {switch (process) {
+    const setContent = () => {switch (saladsProcess) {
         case 'loading':
             return <Spinner/>;
         case 'success': 
@@ -91,6 +91,7 @@ const SaladItems = () => {
         };
     }  
     const elements =  setContent();
+    
 
     return(
         <div className="salad__list">

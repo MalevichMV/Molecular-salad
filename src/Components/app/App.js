@@ -3,6 +3,7 @@ import AppHeader from '../appHeader/AppHeader';
 import AppInfo from '../appInfo/AppInfo';
 import AppButtons from '../appButtons/AppButtons';
 import SaladItems from '../saladItems/SaladItems';
+import CustomSalad from '../customSalad/CustomSalad';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <AppInfo/>
       <AppButtons/>
       <main>
-        <SaladItems/>
+        {/* <SaladItems/> */}
+        <CustomSalad/>
       </main>
     </div>
   );
