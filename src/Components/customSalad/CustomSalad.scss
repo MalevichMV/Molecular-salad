@@ -67,7 +67,7 @@
     height: 20px;
     flex-shrink: 0;
     flex-grow: 0;
-    border: 1px solid #adb5bd;
+    border: 2px solid #30be2b;
     border-radius: 20px;
     margin-right: 0.5em;
     background-repeat: no-repeat;
@@ -76,8 +76,8 @@
     transition: all 0.3s ease;
     }
     &__checkbox:checked+label::before {
-    border-color: #338aec;
-    background-color: #338aec;
+    border-color: #30be2b;
+    background-color: #30be2b;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
     }
     &__button{

@@ -5,17 +5,23 @@ import AppButtons from '../appButtons/AppButtons';
 import SaladItems from '../saladItems/SaladItems';
 import CustomSalad from '../customSalad/CustomSalad';
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 function App() {
   return (
-    <div className="app">
-      <AppHeader/>
-      <AppInfo/>
-      <AppButtons/>
-      <main>
-        {/* <SaladItems/> */}
-        <CustomSalad/>
-      </main>
-    </div>
+    <Router>
+      <div className="app">
+        <AppHeader/>
+        <AppInfo/>
+        <AppButtons/>
+        <main>
+          <Routes>
+            <Route path='/' element={<SaladItems/>}/>
+            <Route path='/custom-salad' element={<CustomSalad/>}/>
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
