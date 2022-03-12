@@ -39,9 +39,9 @@ const CustomSalad = () => {
                     <h3 className="customSalad__name">{item.title}</h3>
                     <div className="customSalad__description">{item.descr}</div>
                     <div className="customSalad__price">{item.quantity ? `Цена: ${item.price} руб.` : 'нет в наличии'}</div>
-                    <label style={display} className='customSalad__checkbox'>
-                        <input type="checkbox" checked={customSalad.indexOf(item.id) === -1 ? false : true} onChange={() => {dispatch(createCustomSalad(item.id))}}></input>
-                    </label>                    
+                    
+                        <input type="checkbox" className='customSalad__checkbox' id='check' name="check" checked={customSalad.indexOf(item.id) === -1 ? false : true} ></input>
+                        <label htmlFor='check' style={display} onClick={() => {dispatch(createCustomSalad(item.id))}}></label>                    
                 </li>
             )
         });
