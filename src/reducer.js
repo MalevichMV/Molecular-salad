@@ -1,12 +1,19 @@
 const initialState = {
     currentSlide: 0,
-    saladsProcess: 'loading',
+    
     ingredientsProcess: 'loading',
-    salad__list: [],
     ingredient__list: [],
-    order: {},
     customSalad: [],
-    orderCustom: []
+    orderCustom: [],
+
+    saladsProcess: 'loading',
+    salad__list: [],
+    order: {},    
+
+    modal: false,
+
+    name: '',
+    phone: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -187,6 +194,23 @@ const reducer = (state = initialState, action) => {
                 ingredient__list: copyIngredients,
                 orderCustom: copyOrderCustom
             };
+        case "TOGGLE_MODAL":
+            return{
+                ...state,
+                modal: !state.modal
+            }
+        case "CHANGE_NAME":
+            return{
+                ...state,
+                name: action.payload
+            };
+
+        case "CHANGE_PHONE":
+            return{
+                ...state,
+                phone: action.payload
+            };
+
         default: 
             return state;
     }

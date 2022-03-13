@@ -13,3 +13,6 @@ export const createCustomSalad = (id) => ({type: 'CREATE_CUSTOM_SALAD', payload:
 export const addOrderCustomSalad = () => ({type: 'ADD_ORDER_CUSTOM_SALAD'});
 export const removeIngredients = () => ({type: 'REMOVE_INGEDIENTS'});
 export const addIngredients = (index) => ({type: 'ADD_INGEDIENTS', payload: index});
+export const toggleModal = () => ({type: 'TOGGLE_MODAL'});
+export const changeName = (value) => ({type: 'CHANGE_NAME', payload: value});
+export const changePhone = (value) => ({type: 'CHANGE_PHONE', payload: value});

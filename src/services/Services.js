@@ -9,7 +9,16 @@ const useServices = () => {
         return await result.json()
     }
 
-    return {getAllSalads, getAllIngredients}
+    const postData = async (data) => {        
+        const result = await fetch('http://localhost:3000/requests', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: data
+        });
+        return await result.json();
+    };
+
+    return {getAllSalads, getAllIngredients, postData}
 }
 
 export default useServices;

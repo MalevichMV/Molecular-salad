@@ -59,7 +59,6 @@ const SaladItems = () => {
     function renderItem() {
         const salads = salad__list;
         const items = salads.map((item) => {
-            console.log(item.id)
             return(
                 <li className="salad__item"
                     key={item.id}>

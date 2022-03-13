@@ -116,6 +116,24 @@
         "quantity": 8
       }
     ],
-    "requests": [      
+    "requests": [  
+      {
+        "name":"egoricha",
+        "phone": "+7464264684",
+        "totalCost": 7892,
+        "customSalads": [
+          {
+            "ingredients": "Агар агар, Тапиока",
+            "price": 799
+          }
+        ],
+        "defaultSalads": [
+          {
+            "title":"Суп из кровяной колбасы",
+            "quantity": 4,
+            "price": 899
+          }
+        ]
+      }   
     ]
   }
