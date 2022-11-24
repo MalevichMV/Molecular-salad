@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to run this project
+
+To start this project, you need to write the command "npm i" in the project folder to use modules. 
+Next you need to write the "npx json-server db.json" command to run the json-project. 
+Then start the project with the "npm start" command.
+
 ## Available Scripts
 
 In the project directory, you can run:
